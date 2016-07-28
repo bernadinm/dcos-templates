@@ -26,7 +26,7 @@ AdminSecurityGroup=$(aws ec2 create-security-group --vpc-id "$vpc" --group-name 
 echo "AdminSecurityGroup: $AdminSecurityGroup"
 
 bucket_status=$(aws s3 mb s3://${STACK_NAME}-cloudformation-bucket)
-echo "ExhibitorS3Bucket: $bucket_status"
+echo "ExhibitorS3Bucket: ${STACK_NAME}-cloudformation-bucket"
 
 LbSecurityGroup=$(aws ec2 create-security-group --vpc-id "$vpc" --group-name LbSecurityGroup --description "Load Balancing Security Group" | jq -r .GroupId )
 echo "LbSecurityGroup: $LbSecurityGroup"
