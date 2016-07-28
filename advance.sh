@@ -29,13 +29,13 @@ bucket_status=$(aws s3 mb s3://${STACK_NAME}-cloudformation-bucket)
 echo "ExhibitorS3Bucket: $bucket_status"
 
 LbSecurityGroup=$(aws ec2 create-security-group --vpc-id "$vpc" --group-name LbSecurityGroup --description "Load Balancing Security Group" | jq -r .GroupId )
-echo "LbSecurityGroup: $LbSecurityGroup
+echo "LbSecurityGroup: $LbSecurityGroup"
 
 MasterSecurityGroup=$(aws ec2 create-security-group --vpc-id "$vpc" --group-name MasterSecurityGroup --description "Master Security Group" | jq -r .GroupId )
 echo "MasterSecurityGroup: $MasterSecurityGroup"
 
 PrivateAgentSecurityGroup=$(aws ec2 create-security-group --vpc-id "$vpc" --group-name PrivateAgentSecurityGroup --description "Private Agent Security Group" | jq -r .GroupId )
-echo "PrivateAgentSecurityGroup: $PrivateAgentSecurityGroup
+echo "PrivateAgentSecurityGroup: $PrivateAgentSecurityGroup"
 
 private_subnet=$(aws ec2 create-subnet --vpc-id "$vpc" --cidr-block "$PRIVATE_SUBNET_CIDR" | jq -r .Subnet.SubnetId)
 aws ec2 wait subnet-available --subnet-ids "$private_subnet"
